@@ -14,3 +14,10 @@ __Dependencies include__:
 * Express
 * SerialPort
 * Socket.io
+
+__Some Screenshots__:
+<img width="1388" alt="Screen Shot 2019-09-18 at 10 45 26 PM" src="https://user-images.githubusercontent.com/23444739/65210435-2e9d6900-da69-11e9-8274-74a1691c5830.png">
+
+<img width="1386" alt="Screen Shot 2019-09-18 at 10 45 37 PM" src="https://user-images.githubusercontent.com/23444739/65210458-4bd23780-da69-11e9-8518-23a76c1f4470.png">
+
+<img width="1387" alt="Screen Shot 2019-09-18 at 10 45 45 PM" src="https://user-images.githubusercontent.com/23444739/65210483-5a205380-da69-11e9-8b71-391204ad48da.png">
