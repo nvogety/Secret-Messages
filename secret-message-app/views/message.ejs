@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Secret Message</title>
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+        <script scr="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.2/components/accordion.js"></script>
+        <style>
+            body {
+                background: #ff5f6d;
+                background: -webkit-linear-gradient(to left, #ff5f6d, #ffc371);
+                background: linear-gradient(to left, #ff5f6d, #ffc371);
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div class="data" style="margin-left: 20%; margin-right: 20%; margin-top: 15%; text-align: center;">
+            <p style="font-size: 600%"><%= message %></p>
+            <form class="ui form" action="/">
+                    <button class="massive ui inverted button" type="submit">Try Another</button>
+            </form>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+        <script>
+            $(document).ready(function() {
+                var socket = io.connect('http://localhost:4000');
+                console.log("connected!!");
+                socket.on('transferData', function(data){
+                    var prox = parseInt(data.proxData);
+                    var threshold = parseInt(<%- JSON.stringify(proximity) %>);
+                    console.log(threshold);
+                    // Determine blurriness based off of current position and proximity specified
+                    // Can be improved, this structure is what worked in the short term
+                    if(prox <= threshold) {
+                        $("body").css({"filter": "blur(0px)"});
+                    } else if(threshold < prox <= (threshold*2)){
+                        $("body").css({"filter": "blur(10px)"});
+                    }
+                    if((threshold*2) < prox ){
+                         $("body").css({"filter": "blur(20px)"});
+                    }
+                    console.log(data.proxData);
+                });
+            });
+        </script>
+    </body>
+</html>
